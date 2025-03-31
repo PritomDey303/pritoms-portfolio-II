@@ -95,7 +95,7 @@ export default function Hero () {
       {/* Image Section - Hidden on mobile */}
       <div className="hidden lg:block w-[450px] h-[450px] relative rounded-xl overflow-hidden">
         <Image
-          src="https://i.ibb.co.com/8nY55TMY/pt-flip.png"
+          src="https://res.cloudinary.com/pritom303/image/upload/v1743393537/profile_picture/pt-flip_mfnlrh.png"
           alt="Pritom Dey"
           fill
           className="object-cover"
