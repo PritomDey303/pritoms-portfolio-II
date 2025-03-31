@@ -3,6 +3,7 @@ import {useState} from 'react';
 import {FaFacebookF, FaGithub, FaLinkedinIn, FaEnvelope} from 'react-icons/fa';
 import {MdLocationOn, MdEmail, MdPhone} from 'react-icons/md';
 import {contactInfo} from '@/utilityFunctions/contactInfo';
+import toast from 'react-hot-toast';
 
 export default function Contact () {
   const {facebook, email, mobile, github, linkedin, address} = contactInfo;
@@ -10,27 +11,52 @@ export default function Contact () {
     name: '',
     email: '',
     location: '',
-    budget: '',
     subject: '',
     message: '',
   });
+
+  const [isLoading, setIsLoading] = useState (false);
 
   const handleChange = e => {
     const {name, value} = e.target;
     setFormData (prev => ({...prev, [name]: value}));
   };
 
-  const handleSubmit = e => {
-    e.preventDefault ();
-    console.log ('Form submitted:', formData);
-    setFormData ({
-      name: '',
-      email: '',
-      location: '',
-      budget: '',
-      subject: '',
-      message: '',
-    });
+  const handleSubmit = async e => {
+    try {
+      setIsLoading (true);
+      e.preventDefault ();
+
+      const res = await fetch ('/api/sendMail', {
+        // Store response
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify (formData),
+      });
+
+      const result = await res.json (); // Parse response
+
+      console.log (result);
+
+      if (result.success) {
+        toast.success ('Email Sent Successfully!');
+        setFormData ({
+          name: '',
+          email: '',
+          location: '',
+          subject: '',
+          message: '',
+        });
+      } else {
+        toast.error ('Sorry! Something went wrong!!');
+      }
+      setIsLoading (false);
+    } catch (err) {
+      setIsLoading (false);
+      toast.error ('Sorry! Something went wrong!');
+    }
   };
 
   const contactDetails = [
@@ -80,13 +106,7 @@ export default function Contact () {
       placeholder: 'Your Location',
       required: false,
     },
-    {
-      label: 'Budget*',
-      name: 'budget',
-      type: 'text',
-      placeholder: 'Budget',
-      required: true,
-    },
+
     {
       label: 'Subject*',
       name: 'subject',
@@ -178,12 +198,20 @@ export default function Contact () {
               />
             </div>
 
-            <button
-              type="submit"
-              className="w-full bg-[#9810FA] text-white font-bold py-3 rounded-lg hover:bg-[#7d0ecf] transition-colors"
-            >
-              Submit →
-            </button>
+            {isLoading
+              ? <button
+                  disabled
+                  type="submit"
+                  className="w-full bg-[#9810FA] text-white font-bold py-3 rounded-lg hover:bg-[#7d0ecf] transition-colors"
+                >
+                  Submit →
+                </button>
+              : <button
+                  type="submit"
+                  className="w-full bg-[#9810FA] text-white font-bold py-3 rounded-lg hover:bg-[#7d0ecf] transition-colors"
+                >
+                  Submit →
+                </button>}
           </form>
         </div>
       </div>
