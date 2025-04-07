@@ -10,7 +10,7 @@ export default function About () {
       {/* Profile Image - Full width on mobile, fixed size on desktop */}
       <div className="relative w-full max-w-xs mx-auto lg:w-[400px] lg:h-[400px] rounded-xl overflow-hidden shadow-lg mb-8 lg:mb-0">
         <Image
-          src="https://i.ibb.co.com/FbD1Z7fG/pt-removebg-preview.png"
+          src="https://i.ibb.co.com/4wF60zTs/put-removebg-preview.png"
           width={400}
           height={400}
           className="object-cover w-full h-full"
@@ -35,7 +35,7 @@ export default function About () {
         </p>
         <div className="text-left">
           <a href="#contact">
-            <button className="px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors">
+            <button className="px-6 py-3 cursor-pointer bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors">
               Contact Me
             </button>
           </a>

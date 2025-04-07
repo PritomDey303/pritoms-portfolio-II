@@ -54,13 +54,19 @@ export default function Hero () {
             onClick={handleScrollToProjects}
             className="w-full lg:w-auto"
           >
-            <button className="w-full lg:w-auto px-6 py-3 bg-[#9810FA] text-white rounded-lg hover:bg-[#7a0dc7] font-medium text-center">
+            <button className="w-full lg:w-auto px-6 py-3 bg-[#9810FA] text-white rounded-lg hover:bg-[#7a0dc7] font-medium text-center cursor-pointer">
               See My Projects
             </button>
           </a>
-          <button className="w-full lg:w-auto px-6 py-3 border-2 border-[#9810FA] text-[#9810FA] rounded-lg hover:bg-[#9810FA] hover:text-white flex items-center justify-center gap-2 font-medium">
-            <FiDownload /> Download CV
-          </button>
+          <a
+            href="https://drive.google.com/file/d/190oTD3U_DNFC6-zxVdhVWICspYF8AgJc/view"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <button className="w-full lg:w-auto px-6 py-3 border-2 border-[#9810FA] text-[#9810FA] rounded-lg hover:bg-[#9810FA] hover:text-white flex items-center justify-center gap-2 font-medium cursor-pointer">
+              <FiDownload /> Download CV
+            </button>
+          </a>
         </div>
 
         {/* Social Links */}
